@@ -1,22 +1,21 @@
 {
-  "name": "sample-express",
+  "name": "start-bootstrap-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "transfers bootstrap template files to a local node-express project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon app.js"
   },
-  "author": "",
-  "preferGlobal": true,
+  "author": "",  
   "bin": {
-    "use-template": "index.js"
+    "nstart": "./index.js"
   },
   "engines": {
     "node": ">= 0.10.x"
   },
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "body-parser": "1.17.1",
     "commander": "^2.9.0",
     "cookie-parser": "1.4.3",

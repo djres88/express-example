@@ -1,11 +1,12 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 const path = require('path')
 const exec = require('child_process').exec;
 
 //shared by each fn, just close over
 const destinationPath = path.dirname(require.main.filename);
-const templateName = argv[0];
-const assetPath = path.join(destinationPath, 'node_modules/start-bootstrap-node/assets', templateName);
+const templateName = process.argv[2];
+const sourcePath = (process.env.NODE_ENV === 'TEST') ? 'assets' : 'node_modules/start-bootstrap-node/assets';
+const assetPath = path.join(destinationPath, sourcePath, templateName);
 
 function isValidTemplate() {
   exec(`ls ${assetPath}`, (error, stdout, stderr) => {
@@ -13,8 +14,8 @@ function isValidTemplate() {
       console.error(`could not find template name ${templateName}`);
       return false;
     }      
+    return true;
   });
-  return true;
 }
 
 function message() {
@@ -37,3 +38,8 @@ function copyFiles() {
       message();
   })
 }
+
+isValidTemplate()
+console.log("DESTINATION: ", destinationPath)
+console.log("template", templateName)
+console.log("assetPath", assetPath)
